@@ -105,16 +105,14 @@ public class view {
         return "editBook.jsp";
     }
 
-//    book.setId feels wrong but it works /shrug
-    @PutMapping("/books/edit/{book_id}")
-    public String saveEditedBook(@Valid @PathVariable("book_id") Long book_id, @ModelAttribute("book") Book book, BindingResult result, Model model, HttpSession session){
+    @PutMapping("/books/edit/{id}")
+    public String saveEditedBook(@Valid @ModelAttribute("book") Book book, BindingResult result, Model model, HttpSession session){
         if(result.hasErrors()){
             model.addAttribute("book", book);
             return "editBook.jsp";
         }
-        book.setId(book_id);
         Book newBook = bookService.createBook(book);
-        return "redirect:/books/{book_id}";
+        return "redirect:/books/" + book.getId();
     }
 
     @GetMapping("/books/{book_id}/delete")

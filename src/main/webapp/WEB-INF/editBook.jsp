@@ -22,7 +22,8 @@
         <h1>Change Your Entry</h1>
         <a href="/books">back to the shelves</a>
     </div>
-    <form:form action="/books/edit/${book.id}" method="put" modelAttribute="book" cssClass="p-1">
+    <form:form action="/books/edit/${book.id}" method="post" modelAttribute="book" cssClass="p-1">
+        <input type="hidden" name="_method" value="put"/>
         <form:errors path="title" cssClass="text-danger"/>
         <div class="d-flex">
             <form:label path="title" cssClass="col-3 mt-2">Title</form:label>
